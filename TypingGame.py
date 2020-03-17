@@ -364,10 +364,12 @@ while tracker:
                 if indexedWord[0] == " ":
                     correctLetter()
 
+    # basic updates
     screen.fill((65, 105, 225))
     screen.blit(house, (0, 0))
     printer(textX, textY)
     updatescore(scoreboard)
+
     if starttrack == 0:
         # This loop only occurs at the start of the game
         intro()
@@ -375,11 +377,15 @@ while tracker:
         # this activates if the user types a whole word correctly
         IMAGE_TIME = 30
         if IMAGE_TIME > 0 and (starttrack != 0):
+            # fires the bullet
             screen.blit(muzzle, (220, 75))
             screen.blit(shot, (textX - 10, textY - 100))
             IMAGE_TIME -= 1
             score += 1
+
         starttrack += 1  # used to exit loading screen in the begining
+
+        # sets up for the new word by slecting a new one and updating the score
         scoreboard = "Words typed: " + str(score)  # updates the scoreboard
         currentWord = randomString()  # choses a new word randomly
         OGword = currentWord  # this keeps the original random string
@@ -388,6 +394,7 @@ while tracker:
         currentLength = len(indexedWord)
         lengthTracker = 0  # resets the tracker for the next word
         textX, textY = randomCoordinates()  # new target location
+
     if starttrack != 0:
         # this spawns shotgun and a new target
         screen.blit(target, (textX - 10, textY - 100))
